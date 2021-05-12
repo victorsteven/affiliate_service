@@ -64,7 +64,7 @@ func (h *transactionHandler) PurchaseProduct(c *gin.Context) {
 	if err != nil {
 		log.Println("error updating affiliate record: ", err)
 		errDel := h.t.TransactionRollBack(createdTransaction.ID)
-		if errDel != nil || err != nil {
+		if errDel != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "something went wrong, try again later"})
 			return
 		}

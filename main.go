@@ -45,7 +45,7 @@ func main() {
 	transactionStorage = storage.NewTransactionStorage(o)
 
 	//Handlers
-	product := handler.NewTransactionHandler(affiliateStorage, productStorage, transactionStorage)
+	transaction := handler.NewTransactionHandler(affiliateStorage, productStorage, transactionStorage)
 
 	//seed database
 	_, _, err := seed.Load(o)
@@ -55,7 +55,7 @@ func main() {
 
 	r := gin.Default()
 
-	r.GET("/purchase-product/:productID/:affiliateCode", product.PurchaseProduct)
+	r.GET("/purchase-product/:productID/:affiliateCode", transaction.PurchaseProduct)
 
 	srv := &http.Server{
 		Addr:    appAddr,
